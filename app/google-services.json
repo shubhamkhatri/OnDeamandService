@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483461589191",
+    "project_id": "ondemandservices-ef27c",
+    "storage_bucket": "ondemandservices-ef27c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483461589191:android:8a36afc2e329f4f70636e2",
+        "android_client_info": {
+          "package_name": "com.shubham.ondeamandservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483461589191-3roi5u5ttm0p6doh0mdas4ivfkdiie50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh0Yzp4-TN_TjDi6OENMYz7IvYXym7iYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483461589191-3roi5u5ttm0p6doh0mdas4ivfkdiie50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shubham.ondeamandservice">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OnDeamandService">
+        <activity android:name=".activity.IntroSlider"></activity>
+        <activity android:name=".activity.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.BookingLocationActivity" />
+        <activity android:name=".activity.BookingHistoryInfoActivity"
+            android:label="Booking"/>
+        <activity android:name=".activity.ContactUsActivity"
+            android:label="Contact Us"/>
+        <activity android:name=".activity.PrivacyPolicyActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
+        <activity android:name=".activity.BookingConfirmationActivity"
+            android:label="Booking Status"/>
+        <activity android:name=".activity.BookingBillActivity"
+            android:label="Booking Details"/>
+        <activity android:name=".activity.BookingFormActivity" />
+        <activity android:name=".activity.WorkerInfoActivity"
+            android:label="Worker Details"/>
+        <activity android:name=".activity.EditProfileActivity" />
+        <activity android:name=".activity.PreLoginActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.TabLayoutActivity" />
+        <activity android:name=".activity.SignUpActivity" />
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_U3C2lxL8xwT3dV" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAfDS0MdlH32eIU7IbntZy20AgDZKynseo" />
+    </application>
+
+</manifest>

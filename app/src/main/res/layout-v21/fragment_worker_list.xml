@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_worker_search_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentTop="true">
+
+        <EditText
+            android:id="@+id/worker_list_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:focusable="false"
+            android:inputType="date"
+            android:layout_weight="3"
+            android:hint="Date" />
+
+        <Spinner
+            android:id="@+id/worker_list_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="3" />
+
+        <ImageButton
+            android:id="@+id/worker_list_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button"
+            android:src="@drawable/ic_worker_search" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fragment_worker_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/purple_500"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/fragment_worker_search_ll"/>
+
+    <ListView
+        android:id="@+id/worker_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_worker_view" />
+
+    <TextView
+        android:id="@+id/fragment_worker_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Worker Available" />
+
+</RelativeLayout>

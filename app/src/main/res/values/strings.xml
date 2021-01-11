@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">OnDemandService</string>
+
+    <string name="already_user"><font color='#000'>Already have an account? </font> <font color='#199BFE'>Login</font></string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="booking">Booking</string>
+    <string name="profile">Profile</string>
+    <string name="error">Required!</string>
+
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_register">Register</string>
+
+    <string name="unicode_character_star">\u2605</string>
+
+    <string name="booking_complete">Booking complete</string>
+    <string name="you_have_booked_a_car_wash">You have booked a car wash!</string>
+    <string name="you_can_check_your_booking_in_your_profile">You can check your booking in your profile.</string>
+    <string name="back_to_home">Back to Home</string>
+
+    <string name="app_version"><font color='#000'>Version: </font>1.0.0</string>
+    <string name="app_build"><font color='#000'>Build: </font>1.0.6</string>
+    <string name="app_company">Sarvio Corporation</string>
+    <string name="app_copyright">Copyright ©2021</string>
+
+    <string name="app_privacy_policy">
+    <b>Privacy Policy</b><p>\n\n
+                  Sarvio Corporation built the On Demand Services app as
+                  a Free app. This SERVICE is provided by
+                  Sarvio Corporation at no cost and is intended for use as
+                  is.
+                </p><p>
+                  This page is used to inform visitors regarding our
+                  policies with the collection, use, and disclosure of Personal
+                  Information if anyone decided to use our Service.
+                </p><p>
+                  If you choose to use our Service, then you agree to
+                  the collection and use of information in relation to this
+                  policy. The Personal Information that we collect is
+                  used for providing and improving the Service. We will not use or share your information with
+                  anyone except as described in this Privacy Policy.
+                </p><p>
+                  The terms used in this Privacy Policy have the same meanings
+                  as in our Terms and Conditions, which is accessible at
+                  On Demand Services unless otherwise defined in this Privacy Policy.
+                </p>\n\n\n<p><b>Information Collection and Use</b></p>\n\n<p>
+            For a better experience, while using our Service, we
+                  may require you to provide us with certain personally
+                  identifiable information. The information that
+                  we request will be retained by us and used as described in this privacy policy.
+                </p> <div><p>
+                    The app does use third party services that may collect
+                    information used to identify you.
+                  </p> <p>
+                    Link to privacy policy of third party service providers used
+                    by the app
+                  </p>\n\n<ul><li><a href="https://www.google.com/policies/privacy/" rel="noopener noreferrer" target="_blank">Google Play Services</a></li>\n<li>
+        <a href="https://support.google.com/admob/answer/6128543?hl=en" rel="noopener noreferrer" target="_blank">AdMob</a></li>\n<li><a href="https://firebase.google.com/policies/analytics" rel="noopener noreferrer" target="_blank">Google Analytics for Firebase</a></li>\n
+        <li><a href="https://firebase.google.com/support/privacy/" rel="noopener noreferrer" target="_blank">Firebase Crashlytics</a></li>\n<li><a href="https://www.facebook.com/about/privacy/update/printable" rel="noopener noreferrer" target="_blank">Facebook</a></li>
+       </ul></div>\n\n\n<p><b>Log Data</b></p>\n\n<p>
+                  We want to inform you that whenever you
+                  use our Service, in a case of an error in the app
+                  we collect data and information (through third party
+                  products) on your phone called Log Data. This Log Data may
+                  include information such as your device Internet Protocol
+                  (\“IP\”) address, device name, operating system version, the
+                  configuration of the app when utilizing our Service,
+                  the time and date of your use of the Service, and other
+                  statistics.
+                </p>\n\n\n <p><b>Cookies</b></p>\n\n <p>
+                  Cookies are files with a small amount of data that are
+                  commonly used as anonymous unique identifiers. These are sent
+                  to your browser from the websites that you visit and are
+                  stored on your device\'s internal memory.
+                </p> <p>
+                  This Service does not use these \“cookies\” explicitly. However,
+                  the app may use third party code and libraries that use
+                  \“cookies\” to collect information and improve their services.
+                  You have the option to either accept or refuse these cookies
+                  and know when a cookie is being sent to your device. If you
+                  choose to refuse our cookies, you may not be able to use some
+                  portions of this Service.
+                </p>\n\n\n <p><b>Service Providers</b></p>\n\n<p>
+                  We may employ third-party companies and
+                  individuals due to the following reasons:
+                </p>\n\n<ul><li>To facilitate our Service;</li>\n<li>To provide the Service on our behalf;</li>\n<li>To perform Service-related services; or</li>\n<li>To assist us in analyzing how our Service is used.</li></ul>\n\n<p>
+                  We want to inform users of this Service
+                  that these third parties have access to your Personal
+                  Information. The reason is to perform the tasks assigned to
+                  them on our behalf. However, they are obligated not to
+                  disclose or use the information for any other purpose.
+                </p> \n\n\n<p><b>Security</b></p>\n\n<p>
+                  We value your trust in providing us your
+                  Personal Information, thus we are striving to use commercially
+                  acceptable means of protecting it. But remember that no method
+                  of transmission over the internet, or method of electronic
+                  storage is 100% secure and reliable, and we cannot
+                  guarantee its absolute security.
+                </p>\n\n\n <p><b>Links to Other Sites</b></p>\n\n<p>
+                  This Service may contain links to other sites. If you click on
+                  a third-party link, you will be directed to that site. Note
+                  that these external sites are not operated by us.
+                  Therefore, we strongly advise you to review the
+                  Privacy Policy of these websites. We have
+                  no control over and assume no responsibility for the content,
+                  privacy policies, or practices of any third-party sites or
+                  services.
+                </p>\n\n\n <p><b>Children’s Privacy</b></p>\n\n<p>
+                  These Services do not address anyone under the age of 13.
+                  We do not knowingly collect personally
+                  identifiable information from children under 13. In the case
+                  we discover that a child under 13 has provided
+                  us with personal information, we immediately
+                  delete this from our servers. If you are a parent or guardian
+                  and you are aware that your child has provided us with
+                  personal information, please contact us so that
+                  we will be able to do necessary actions.
+                </p>\n\n\n <p><b>Changes to This Privacy Policy</b></p>\n\n<p>
+                  We may update our Privacy Policy from
+                  time to time. Thus, you are advised to review this page
+                  periodically for any changes. We will
+                  notify you of any changes by posting the new Privacy Policy on
+                  this page.
+                </p> <p>This policy is effective as of 2020-12-25</p> \n\n\n<p><b>Contact Us</b></p>\n\n<p>
+                  If you have any questions or suggestions about our
+        Privacy Policy, do not hesitate to contact us at abc\@gmail.com.</p>
+
+        </string>
+
+
+</resources>
