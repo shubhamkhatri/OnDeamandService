@@ -18,7 +18,7 @@
             android:id="@+id/swl_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/app_logo" />
+            app:srcCompat="@drawable/worker_icon" />
 
     </LinearLayout>
 
