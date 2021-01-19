@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,17 +28,21 @@ import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 import com.shubham.ondeamandservice.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BookingBillActivity extends AppCompatActivity implements PaymentResultListener {
 
-    private String carType, carModel, carNumber, carCompany, date, time, address, PhoneNumberWorker,PhoneNumber,payment;
+    private String carType, carModel, carNumber, carCompany, date, time, address, PhoneNumberWorker, PhoneNumber, payment;
     private int wash_ele, clean_ele, vacuum_ele;
     private TextView Model, Number, Type, Company, Address, Date, Time, WashPrice, CleanPrice, VacuumPrice, ExtraPrice, TotalPrice;
-    private int wash, clean, vacuum, extra,amount;
+    private int wash, clean, vacuum, extra, amount;
     private Button cash, online;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth;
@@ -60,14 +69,14 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
         time = i.getStringExtra("Time");
         address = i.getStringExtra("Address");
         PhoneNumberWorker = i.getStringExtra("Phone");
-        Latitude=i.getStringExtra("Latitude");
-        Longitude=i.getStringExtra("Longitude");
+        Latitude = i.getStringExtra("Latitude");
+        Longitude = i.getStringExtra("Longitude");
 
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         PhoneNumber = firebaseUser.getPhoneNumber();
-        PhoneNumber=PhoneNumber.substring(3);
+        PhoneNumber = PhoneNumber.substring(3);
 
         setDefault();
         setText();
@@ -77,7 +86,7 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
             public void onClick(View view) {
                 progressDialog.setMessage("Booking...");
                 progressDialog.show();
-                payment="Cash";
+                payment = "Cash";
                 updateWorkerTimeSlot();
             }
         });
@@ -85,7 +94,7 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
         online.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                payment="Online";
+                payment = "Online";
                 startPayment();
             }
         });
@@ -93,7 +102,7 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
     }
 
     private void updateWorkerTimeSlot() {
-        String timeSlot=date+" "+time;
+        String timeSlot = date + " " + time;
         db.collection("workers").document(PhoneNumberWorker).update("Time Slot", FieldValue.arrayUnion(timeSlot))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -114,33 +123,40 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
 
         Map<String, Object> booking = new LinkedHashMap<>();
 
-        booking.put("Car Model",carModel);
-        booking.put("Car Number",carNumber);
-        booking.put("Car Type",carType);
-        booking.put("Car Company",carCompany);
-        booking.put("Address",address);
-        booking.put("Date",date);
-        booking.put("Time",time);
-        booking.put("Wash Price",WashPrice.getText().toString().trim());
-        booking.put("Clean Price",CleanPrice.getText().toString().trim());
-        booking.put("Vacuum Price",VacuumPrice.getText().toString().trim());
-        booking.put("Extra Price",ExtraPrice.getText().toString().trim());
-        booking.put("Total Price",TotalPrice.getText().toString().trim());
-        booking.put("Worker",PhoneNumberWorker);
-        booking.put("User",PhoneNumber);
-        booking.put("Status","Ongoing");
-        booking.put("Payment",payment);
-        booking.put("Rating","NA");
-        booking.put("Latitude",Latitude);
-        booking.put("Longitude",Longitude);
+        booking.put("Car Model", carModel);
+        booking.put("Car Number", carNumber);
+        booking.put("Car Type", carType);
+        booking.put("Car Company", carCompany);
+        booking.put("Address", address);
+        booking.put("Date", date);
+        booking.put("Time", time);
+        booking.put("Wash Price", WashPrice.getText().toString().trim());
+        booking.put("Clean Price", CleanPrice.getText().toString().trim());
+        booking.put("Vacuum Price", VacuumPrice.getText().toString().trim());
+        booking.put("Extra Price", ExtraPrice.getText().toString().trim());
+        booking.put("Total Price", TotalPrice.getText().toString().trim());
+        booking.put("Worker", PhoneNumberWorker);
+        booking.put("User", PhoneNumber);
+        booking.put("Status", "Ongoing");
+        booking.put("Payment", payment);
+        booking.put("Rating", "NA");
+        booking.put("Latitude", Latitude);
+        booking.put("Longitude", Longitude);
 
         db.collection("bookings").document().set(booking)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        progressDialog.dismiss();
-                        startActivity(new Intent(BookingBillActivity.this,BookingConfirmationActivity.class));
-                        finish();
+                        String message = "Booking by " + PhoneNumber + " on " + time + " " + date + " at " + address + " for amount " + TotalPrice.getText().toString().trim();
+                        try {
+                            sendSms(message, PhoneNumberWorker);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
+                        // progressDialog.dismiss();
+                        // startActivity(new Intent(BookingBillActivity.this,BookingConfirmationActivity.class));
+                        // finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -194,7 +210,7 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
         ExtraPrice.setText(String.valueOf(extra));
         TotalPrice.setText(String.valueOf(total));
 
-        amount=total*100;
+        amount = total * 100;
         progressDialog.dismiss();
     }
 
@@ -254,18 +270,65 @@ public class BookingBillActivity extends AppCompatActivity implements PaymentRes
             JSONObject options = new JSONObject();
 
             options.put("name", "Shubham");
-            options.put("description", "Booking By #" + PhoneNumber+"\nFor Worker: "+PhoneNumberWorker);
+            options.put("description", "Booking By #" + PhoneNumber + "\nFor Worker: " + PhoneNumberWorker);
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
             //options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
             options.put("theme.color", "#3399cc");
             options.put("currency", "INR");
-            options.put("amount",amount );//pass amount in currency subunits
-            //  options.put("prefill.email", "shubhamkhatri474@gmail.com");
-            // options.put("prefill.contact","8299305579");
+            options.put("amount", amount);//pass amount in currency subunits
             checkout.open(activity, options);
         } catch (Exception e) {
             Log.e("ERROR", "Error in starting Razorpay Checkout", e);
         }
+    }
+
+    public void sendSms(String message, String number) throws UnsupportedEncodingException {
+
+        String apiKey = "pWFDfjPQTXlN48gzytVhU97SudYms3iRo6KnEJ0ZweGOMBLkqrVHTYySCjaIihskcoBrJ4O6tUmEvG1g";
+        String sendId = "FSTSMS";
+
+        //important step...
+        message = URLEncoder.encode(message, "UTF-8");
+        String language = "english";
+
+        String route = "p";
+
+        String myUrl = "https://www.fast2sms.com/dev/bulk?authorization=" + apiKey + "&sender_id=" + sendId + "&message=" + message + "&language=" + language + "&route=" + route + "&numbers=" + number;
+
+        StringRequest requestSms = new StringRequest(myUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(response);
+                    String ret = object.getString("return");
+                    String reqId = object.getString("request_id");
+                    JSONArray dataArray = object.getJSONArray("message");
+                    String res = dataArray.getString(0);
+                    progressDialog.dismiss();
+                    if (ret.equals("true")) {
+                        Toast.makeText(getApplicationContext(), "Message: " + res, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BookingBillActivity.this, BookingConfirmationActivity.class));
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getApplicationContext(), "Some error occurred!!", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(BookingBillActivity.this);
+        rQueue.add(requestSms);
+
     }
 
 }

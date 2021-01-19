@@ -61,6 +61,8 @@
                         android:layout_marginTop="15dp"
                         android:maxLines="15"
                         android:minLines="1"
+                        android:textAlignment="center"
+                        android:text="To provide easy and convenient professional doorstep carwash service"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                         app:fontFamily="sans-serif-light" />
 
@@ -123,32 +125,7 @@
                             android:autoLink="email"
                             android:linksClickable="true"
                             android:singleLine="true"
-                            android:text="abc@gmail.com"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/phoneSupport"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Phone No"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-                        <TextView
-                            android:id="@+id/cu_phone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="phone"
-                            android:linksClickable="true"
-                            android:singleLine="true"
-                            android:text="+919876543210"
+                            android:text="care@carwashboy.com"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                     </LinearLayout>
@@ -201,7 +178,7 @@
                         android:layout_marginTop="10dp"
                         android:maxLines="4"
                         android:minLines="1"
-                        android:text="Lucknow, Uttar Pradesh"
+                        android:text="New Delhi, India"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 

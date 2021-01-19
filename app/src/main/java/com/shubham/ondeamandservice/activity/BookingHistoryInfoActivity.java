@@ -23,6 +23,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +37,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.shubham.ondeamandservice.R;
 import com.shubham.ondeamandservice.adapter.BookingHistoryAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -87,7 +98,7 @@ public class BookingHistoryInfoActivity extends AppCompatActivity {
                         user = documentSnapshot.getString("User");
                         Status = documentSnapshot.getString("Status");
                         CarCompany = documentSnapshot.getString("Car Company");
-                        CarName = documentSnapshot.getString("Car Name");
+                        CarName = documentSnapshot.getString("Car Model");
                         CarNumber = documentSnapshot.getString("Car Number");
                         CarType = documentSnapshot.getString("Car Type");
                         Date = documentSnapshot.getString("Date");
@@ -387,9 +398,14 @@ public class BookingHistoryInfoActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(BookingHistoryInfoActivity.this, "Booking Cancelled Successfully", Toast.LENGTH_SHORT).show();
-                                        progressDialog2.dismiss();
-                                        finish();
-                                    }
+                                       // progressDialog2.dismiss();
+                                       // finish();
+                                        String message = "Booking Cancelled by " + user + " for "+dateTime+". Sorry for the inconvenience occurred.";
+                                        try {
+                                            sendSms(message, worker);
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }                                    }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
@@ -428,4 +444,52 @@ public class BookingHistoryInfoActivity extends AppCompatActivity {
 
     }
 
+    public void sendSms(String message, String number) throws UnsupportedEncodingException {
+
+        String apiKey = "pWFDfjPQTXlN48gzytVhU97SudYms3iRo6KnEJ0ZweGOMBLkqrVHTYySCjaIihskcoBrJ4O6tUmEvG1g";
+        String sendId = "FSTSMS";
+
+        //important step...
+        message = URLEncoder.encode(message, "UTF-8");
+        String language = "english";
+
+        String route = "p";
+
+        String myUrl = "https://www.fast2sms.com/dev/bulk?authorization=" + apiKey + "&sender_id=" + sendId + "&message=" + message + "&language=" + language + "&route=" + route + "&numbers=" + number;
+
+        StringRequest requestSms = new StringRequest(myUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(response);
+                    String ret = object.getString("return");
+                    String reqId = object.getString("request_id");
+                    JSONArray dataArray = object.getJSONArray("message");
+                    String res = dataArray.getString(0);
+
+                    Toast.makeText(getApplicationContext(), "Message: " + res, Toast.LENGTH_SHORT).show();
+                    progressDialog2.dismiss();
+                    Intent intent = new Intent(BookingHistoryInfoActivity.this, TabLayoutActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressDialog2.dismiss();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getApplicationContext(), "Some error occurred!!", Toast.LENGTH_SHORT).show();
+                progressDialog2.dismiss();
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(BookingHistoryInfoActivity.this);
+        rQueue.add(requestSms);
+
+    }
 }

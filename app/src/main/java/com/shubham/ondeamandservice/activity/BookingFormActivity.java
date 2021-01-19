@@ -58,7 +58,7 @@ public class BookingFormActivity extends AppCompatActivity {
     private Spinner company, time;
     private Button next;
     private boolean mini_flag, sedan_flag, suv_flag, premium_flag;
-    private String[] slot_array = {"Choose one", "08:00AM-12:00PM", "12:00PM-04:00PM", "04:00PM-08:00PM"};
+    private String[] slot_array = {"Choose one", "08:00AM-09:00AM", "09:00AM-10:00AM", "10:00AM-11:00AM", "11:00AM-12:00PM", "12:00PM-01:00PM","01:00PM-02:00PM","02:00PM-03:00PM","03:00PM-04:00PM","04:00PM-05:00PM", "05:00PM-06:00PM","06:00PM-07:00PM"};
     private String[] company_array = {"Choose one", "Maruti Suzuki", "Hyundai", "Mahindra", "Tata", "Toyota",
             "Kia", "Volkswagen", "Renault", "MG Motor", "Jeep", "Honda", "BMW", "Audi", "Mercedes Benz",
             "Jaguar", "Skoda", "Nissan", "Ferrari", "Lamborghini", "Tesla", "Porsche", "Datsun", "Other"};

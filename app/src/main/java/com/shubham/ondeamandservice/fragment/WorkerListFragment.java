@@ -60,7 +60,7 @@ public class WorkerListFragment extends Fragment {
     private Spinner timeSlot;
     private ImageButton search;
     private ListView workerList;
-    private String[] slot = {"Choose one", "08:00AM-12:00PM", "12:00PM-04:00PM", "04:00PM-08:00PM"};
+    private String[] slot = {"Choose one", "08:00AM-09:00AM", "09:00AM-10:00AM", "10:00AM-11:00AM", "11:00AM-12:00PM", "12:00PM-01:00PM","01:00PM-02:00PM","02:00PM-03:00PM","03:00PM-04:00PM","04:00PM-05:00PM", "05:00PM-06:00PM","06:00PM-07:00PM"};
     private String Slot = "", TimeSlot;
     private Calendar myCalendar;
     private FirebaseAuth firebaseAuth;

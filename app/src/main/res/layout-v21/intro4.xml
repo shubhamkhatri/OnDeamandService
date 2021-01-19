@@ -35,7 +35,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:text="Save time and money by scheduling your booking"
+        android:text="Save time and money by scheduling your booking."
         android:textAlignment="center"
         android:textSize="@dimen/normalText" />
 
